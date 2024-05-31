@@ -1,36 +1,17 @@
 import { parse as parseImage } from "exifr";
+import { exifFields } from "./consts";
 
-export async function extractExif(blob) {
-  const fields = [
-    "ModifyDate",
-    "Make",
-    "Model",
-    "AbsoluteAltitude",
-    "RelativeAltitude",
-    "GimbalRollDegree",
-    "GimbalYawDegree",
-    "GimbalPitchDegree",
-    "FlightRollDegree",
-    "FlightYawDegree",
-    "FlightPitchDegree",
-    "Orientation",
-    "SerialNumber",
-    "GPSAltitude",
-    "GPSLatitudeRef",
-    "GPSLongitudeRef",
-    "GPSLongitude",
-    "GPSLatitude",
-    "latitude",
-    "longitude",
-    "CreateDate",
-    "BrightnessValue",
-    "FNumber",
-    "ExposureTime",
-    "ImageDescription",
-  ];
-
-  const exifData = await parseImage(blob, {
+/**
+ * Description placeholder
+ * @export
+ * @async
+ * @param {string} fileName
+ * @returns {unknown}
+ */
+export async function extractExif(fileName) {
+  const exifData = await parseImage(fileName, {
     xmp: true,
-    pick: fields,
+    pick: exifFields,
   });
+  return exifData;
 }
