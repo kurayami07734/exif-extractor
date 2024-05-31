@@ -6,4 +6,6 @@ RUN npm ci
 
 COPY ./src ./src
 
+COPY ./images ./tmp
+
 CMD [ "npm", "start" ]

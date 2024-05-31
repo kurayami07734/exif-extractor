@@ -26,4 +26,4 @@ export const exifFields = [
   "ImageDescription",
 ];
 
-export const imageExtensions = [".jpg", ".jpeg", ".png"];
+export const imageExtensions = ["jpg", "jpeg", "png"];

@@ -1,5 +1,5 @@
-import { parse as parseImage } from "exifr";
-import { exifFields } from "./consts";
+import exifr from "exifr";
+import { exifFields } from "./consts.js";
 
 /**
  * Description placeholder
@@ -9,7 +9,7 @@ import { exifFields } from "./consts";
  * @returns {unknown}
  */
 export async function extractExif(fileName) {
-  const exifData = await parseImage(fileName, {
+  const exifData = await exifr.parse(fileName, {
     xmp: true,
     pick: exifFields,
   });

@@ -1,7 +1,10 @@
-import { findAllImages } from "./fileUtils";
+import { findAllImages } from "./fileUtils.js";
+import { extractExif } from "./exif.js";
 
-const parentDirectory = "/tmp";
+const parentDirectory = "./tmp";
 
-const imagePaths = findAllImages(parentDirectory);
+const imagePaths = await findAllImages(parentDirectory);
 
-console.log(imagePaths)
+const promises = imagePaths.map((path) => extractExif(path));
+
+Promise.all(promises).then(res => console.log(res.length, res));

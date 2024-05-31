@@ -1,7 +1,7 @@
 import { readdir, stat } from "fs/promises";
 import path from "path";
 
-import { imageExtensions } from "./consts";
+import { imageExtensions } from "./consts.js";
 
 /**
  * Recursively locate all file present in parent directory
@@ -16,16 +16,16 @@ export async function findAllImages(parentDirectory) {
   for (const file of files) {
     const filePath = path.join(parentDirectory, file);
     const stats = await stat(filePath);
-
     if (stats.isDirectory()) {
-      // Recursively traverse subdirectories
       const recurse = await findAllImages(filePath);
       filePaths.push(...recurse);
-    } else if (path.extname(filePath) in imageExtensions) {
-      // Check for JPG or PNG extensions (case-insensitive)
+    } else if (imageExtensions.includes(fileExtension(filePath))) {
       filePaths.push(filePath);
     }
   }
-
   return filePaths;
+}
+
+function fileExtension(filePath) {
+  return path.extname(filePath).slice(1).toLowerCase();
 }
