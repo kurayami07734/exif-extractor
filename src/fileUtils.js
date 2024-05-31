@@ -1,4 +1,4 @@
-import { readdir, stat } from "fs/promises";
+import { readdir, stat, writeFile } from "fs/promises";
 import path from "path";
 
 import { imageExtensions } from "./consts.js";
@@ -28,4 +28,8 @@ export async function findAllImages(parentDirectory) {
 
 function fileExtension(filePath) {
   return path.extname(filePath).slice(1).toLowerCase();
+}
+
+export async function writeToJson(fileName, data) {
+  return writeFile(`./outputs/exif/${fileName}.json`, JSON.stringify(data, null, 2));
 }
