@@ -1,7 +1,7 @@
 import { findAllImages, writeToJson } from "./fileUtils.js";
 import { extractExif } from "./exif.js";
 
-const parentDirectory = "./images";
+const parentDirectory = "./tmp";
 
 const imagePaths = await findAllImages(parentDirectory);
 
